@@ -50,11 +50,21 @@
             gap: 0.5rem;
         }
 
-        nav .logo img {
-            height: 50px;
+        nav .logo .logo-wrapper {
             width: 50px;
-            object-fit: cover;
+            height: 50px;
             border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            object-position: center;
         }
 
         nav ul {
@@ -207,6 +217,8 @@
             width: 100%;
             height: auto;
             object-fit: contain;
+            object-position: center;
+            clip-path: circle(42% at center);
         }
 
         /* Services Section */
@@ -527,7 +539,7 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo"><img src="logo.png" alt="Golden Barbers Logo"> Golden Barbers Goodmayes</div>
+            <div class="logo"><div class="logo-wrapper"><img src="logo.png" alt="Golden Barbers Logo"></div> Golden Barbers Goodmayes</div>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
