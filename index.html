@@ -430,6 +430,10 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            #gallery .container {
+                padding: 0 10px;
+            }
+
             .hamburger {
                 display: flex;
             }
@@ -473,13 +477,14 @@
             }
 
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
                 gap: 1.5rem;
             }
 
             .gallery-item {
                 height: 250px;
                 font-size: 4rem;
+                width: 100%;
             }
 
             h2 {
