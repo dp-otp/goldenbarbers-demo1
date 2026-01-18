@@ -455,6 +455,16 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            nav .logo .logo-wrapper {
+                width: 40px;
+                height: 40px;
+            }
+
+            nav .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
             .hamburger {
                 display: flex;
             }
@@ -491,17 +501,31 @@
 
             .about-content {
                 flex-direction: column;
+                position: relative;
+            }
+
+            #about h2 {
+                position: relative;
+                z-index: 1;
             }
 
             .about-image {
-                order: -1;
-                margin-bottom: 2rem;
+                position: absolute;
+                top: -50px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 2;
+                margin-bottom: 0;
+            }
+
+            .about-text {
+                margin-top: 200px;
             }
 
             .about-image-placeholder {
                 width: 100%;
-                max-width: 250px;
-                height: 250px;
+                max-width: 200px;
+                height: 200px;
                 margin: 0 auto;
             }
 
