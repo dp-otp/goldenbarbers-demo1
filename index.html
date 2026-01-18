@@ -455,6 +455,24 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            /* Optimize animations for mobile performance */
+            .service-card:hover {
+                transform: translateY(-8px) scale(1.02);
+            }
+
+            .gallery-item:hover {
+                transform: scale(1.02) rotate(0deg);
+            }
+
+            /* Reduce animation intensity on mobile */
+            .fade-in {
+                transform: translateY(20px);
+            }
+
+            .service-card {
+                transform: translateY(25px) scale(0.98);
+            }
+
             nav .logo .logo-wrapper {
                 width: 40px;
                 height: 40px;
