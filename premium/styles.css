@@ -457,7 +457,7 @@ p {
     width: 1000px;
     height: 1000px;
     background-image: url('../logo-removebg-preview.png');
-    background-size: 65%;
+    background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.12;
@@ -466,7 +466,7 @@ p {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     filter: contrast(1.1) brightness(1.05);
-    clip-path: circle(35% at 50% 50%);
+    clip-path: circle(28% at 50% 50%);
 }
 
 .hero-bg::after {
@@ -781,7 +781,7 @@ p {
     .hero-bg::before {
         width: 750px;
         height: 750px;
-        clip-path: circle(35% at 50% 50%);
+        clip-path: circle(28% at 50% 50%);
     }
 }
 
@@ -838,7 +838,7 @@ p {
         width: 500px;
         height: 500px;
         opacity: 0.1;
-        clip-path: circle(35% at 50% 50%);
+        clip-path: circle(28% at 50% 50%);
     }
 
     .hero-eyebrow {
@@ -977,7 +977,7 @@ p {
     .hero-bg::before {
         width: 400px;
         height: 400px;
-        clip-path: circle(35% at 50% 50%);
+        clip-path: circle(28% at 50% 50%);
     }
 
     .trust-grid {
