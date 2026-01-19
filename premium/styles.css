@@ -458,15 +458,18 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 1000px;
     background-image: url('../logo-removebg-preview.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.08;
+    opacity: 0.12;
     animation: logoFloat 8s ease-in-out infinite;
     pointer-events: none;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) brightness(1.05);
 }
 
 .hero-bg::after {
@@ -489,11 +492,11 @@ p {
 @keyframes logoFloat {
     0%, 100% {
         transform: translate(-50%, -50%) scale(1);
-        opacity: 0.08;
+        opacity: 0.12;
     }
     50% {
-        transform: translate(-50%, -50%) scale(1.05);
-        opacity: 0.12;
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 0.18;
     }
 }
 
@@ -717,10 +720,16 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.75rem;
     text-decoration: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+}
+
+.footer-social-link svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--gold);
+    transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link:hover {
@@ -734,14 +743,26 @@ p {
     border-color: transparent;
 }
 
+.footer-social-link.instagram:hover svg {
+    fill: white;
+}
+
 .footer-social-link.tiktok:hover {
     background: linear-gradient(135deg, #00f2ea, #ff0050);
     border-color: transparent;
 }
 
-.footer-social-link.facebook:hover {
-    background: #1877f2;
+.footer-social-link.tiktok:hover svg {
+    fill: white;
+}
+
+.footer-social-link.whatsapp:hover {
+    background: #25D366;
     border-color: transparent;
+}
+
+.footer-social-link.whatsapp:hover svg {
+    fill: white;
 }
 
 .footer-bottom {
@@ -761,8 +782,8 @@ p {
     }
 
     .hero-bg::before {
-        width: 600px;
-        height: 600px;
+        width: 750px;
+        height: 750px;
     }
 }
 
@@ -816,9 +837,9 @@ p {
     }
 
     .hero-bg::before {
-        width: 400px;
-        height: 400px;
-        opacity: 0.05;
+        width: 500px;
+        height: 500px;
+        opacity: 0.1;
     }
 
     .hero-eyebrow {
@@ -939,7 +960,11 @@ p {
     .footer-social-link {
         width: 70px;
         height: 70px;
-        font-size: 2rem;
+    }
+
+    .footer-social-link svg {
+        width: 32px;
+        height: 32px;
     }
 }
 
@@ -951,8 +976,8 @@ p {
     }
 
     .hero-bg::before {
-        width: 300px;
-        height: 300px;
+        width: 400px;
+        height: 400px;
     }
 
     .trust-grid {
@@ -969,8 +994,12 @@ p {
     }
 
     .footer-social-link {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
+        width: 65px;
+        height: 65px;
+    }
+
+    .footer-social-link svg {
+        width: 30px;
+        height: 30px;
     }
 }
