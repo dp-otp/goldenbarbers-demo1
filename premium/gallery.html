@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Golden Barbers Goodmayes - Our Work Showcase</title>
+    <meta name="description" content="View our portfolio of precision cuts, fades, and grooming work. See the quality that defines Golden Barbers.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modals.css">
+
+    <style>
+        /* Gallery Page Specific Styles */
+        .gallery-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 120px;
+            text-align: center;
+        }
+
+        .gallery-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            background: var(--dark-bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item-interactive {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item-interactive::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+
+        .gallery-item-interactive:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item-interactive:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .gallery-placeholder-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            filter: grayscale(0.5);
+            transition: all 0.4s;
+        }
+
+        .gallery-item-interactive:hover .gallery-placeholder-icon {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        .gallery-placeholder-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .gallery-category {
+            font-size: 0.875rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* Filter Tabs */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Instagram CTA */
+        .instagram-cta {
+            background: var(--dark-elevated);
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .instagram-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .instagram-cta:hover .instagram-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo">
+                    <img src="../logo.png" alt="Golden Barbers" class="nav-logo-img">
+                    <span class="nav-logo-text">Golden Barbers</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="services.html" class="nav-cta"><span>Book Now</span></a></li>
+                </ul>
+
+                <div class="nav-hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <div class="fade-in">
+                <h1>Our <span class="text-gradient">Work</span></h1>
+                <p>
+                    Every cut tells a story. Browse our portfolio of precision grooming and transformation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery-section">
+        <div class="container">
+            <div class="gallery-filters fade-in">
+                <button class="filter-btn active">All Work</button>
+                <button class="filter-btn">Fades</button>
+                <button class="filter-btn">Classic Cuts</button>
+                <button class="filter-btn">Beard Work</button>
+                <button class="filter-btn">Transformations</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Fade Examples -->
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">💈</div>
+                        <div class="gallery-placeholder-text">Premium Fade</div>
+                        <div class="gallery-category">Signature Work</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">✂️</div>
+                        <div class="gallery-placeholder-text">Classic Taper</div>
+                        <div class="gallery-category">Traditional Cut</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">🧔</div>
+                        <div class="gallery-placeholder-text">Beard Sculpt</div>
+                        <div class="gallery-category">Facial Grooming</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">💈</div>
+                        <div class="gallery-placeholder-text">Drop Fade</div>
+                        <div class="gallery-category">Modern Style</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">⚡</div>
+                        <div class="gallery-placeholder-text">Skin Fade</div>
+                        <div class="gallery-category">Precision Work</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">✨</div>
+                        <div class="gallery-placeholder-text">Textured Cut</div>
+                        <div class="gallery-category">Contemporary</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">🪒</div>
+                        <div class="gallery-placeholder-text">Royal Shave</div>
+                        <div class="gallery-category">Premium Service</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">💎</div>
+                        <div class="gallery-placeholder-text">Executive Style</div>
+                        <div class="gallery-category">Business Look</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">🎯</div>
+                        <div class="gallery-placeholder-text">Lineup Perfection</div>
+                        <div class="gallery-category">Detail Work</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">🔥</div>
+                        <div class="gallery-placeholder-text">Bold Transformation</div>
+                        <div class="gallery-category">Before & After</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">👑</div>
+                        <div class="gallery-placeholder-text">Premium Package</div>
+                        <div class="gallery-category">Full Service</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item-interactive scale-in">
+                    <div class="gallery-placeholder">
+                        <div class="gallery-placeholder-icon">✂️</div>
+                        <div class="gallery-placeholder-text">Fresh Cut</div>
+                        <div class="gallery-category">Daily Look</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram CTA -->
+    <section class="section instagram-cta">
+        <div class="container">
+            <div class="fade-in" style="max-width: 700px; margin: 0 auto;">
+                <div class="instagram-icon">📷</div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    Follow Us on <span class="text-gradient">Instagram</span>
+                </h2>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                    See our latest work, special offers, and behind-the-scenes content.
+                    Tag us in your fresh cut photos!
+                </p>
+                <a href="#" class="btn btn-primary btn-large">
+                    <span>@GoldenBarbersGoodmayes</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ready to Book CTA -->
+    <section class="section" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%); text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+        <div class="container">
+            <div class="fade-in" style="max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">
+                    Ready for Your <span class="text-gradient">Transformation?</span>
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2.5rem;">
+                    Book your appointment online and join the Golden Barbers family.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="services.html" class="btn btn-primary btn-large">
+                        <span>Book Now</span>
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary btn-large">
+                        <span>Contact Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Golden Barbers Goodmayes</h4>
+                    <p>Premium barbershop in the heart of Ilford, London. Where precision meets style.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Hours</h4>
+                    <p>Monday - Saturday<br>9:30 AM - 8:00 PM</p>
+                    <p>Sunday<br>9:30 AM - 6:00 PM</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>14 Goodmayes Rd<br>London, Ilford IG3 9UN</p>
+                    <p>020 8598 9920</p>
+                    <p>ltdgoldenbarbers@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Golden Barbers Goodmayes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+
+</body>
+</html>

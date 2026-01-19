@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Barbers Goodmayes | Premium Barbershop in Ilford, London</title>
+    <meta name="description" content="Experience precision grooming at Golden Barbers Goodmayes. Premium cuts, modern fades, and traditional barbering in the heart of Ilford.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modals.css">
+
+    <style>
+        /* Home Page Specific Styles */
+
+        /* Trust Section */
+        .trust-section {
+            background: var(--dark-elevated);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            text-align: center;
+        }
+
+        .trust-item {
+            padding: var(--space-md);
+        }
+
+        .trust-number {
+            font-size: var(--text-5xl);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+
+        .trust-label {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Services Preview */
+        .services-preview {
+            background: var(--dark-bg);
+        }
+
+        .services-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .service-preview-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            padding: var(--space-lg);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-preview-card:hover::before {
+            left: 100%;
+        }
+
+        .service-preview-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .service-preview-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-md);
+            display: block;
+        }
+
+        .service-preview-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .service-preview-description {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.6;
+        }
+
+        .service-preview-price {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .service-preview-price-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            background: var(--dark-elevated);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .why-card {
+            padding: var(--space-lg);
+            background: rgba(212, 175, 55, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .why-card:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .why-title {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            color: var(--gold);
+        }
+
+        .why-description {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: var(--dark-bg);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .review-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: var(--space-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .review-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .review-stars {
+            color: var(--gold);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .review-text {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .review-author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: var(--dark-bg);
+        }
+
+        .review-author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .review-author-verified {
+            font-size: var(--text-sm);
+            color: var(--gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-eyebrow {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-title {
+            font-size: var(--text-4xl);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-description {
+            font-size: var(--text-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-eyebrow {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: var(--space-sm);
+        }
+
+        .section-heading {
+            font-size: var(--text-4xl);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+        }
+
+        .section-description {
+            font-size: var(--text-xl);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo">
+                    <img src="../logo.png" alt="Golden Barbers" class="nav-logo-img">
+                    <span class="nav-logo-text">Golden Barbers</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="services.html" class="nav-cta"><span>Book Now</span></a></li>
+                </ul>
+
+                <div class="nav-hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">Premium Grooming Since 2010</div>
+                <h1 class="hero-title">
+                    Where <span class="text-gradient">Precision</span><br>
+                    Meets <span class="text-gradient">Style</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Experience elite barbering at Golden Barbers Goodmayes.
+                    From classic cuts to modern fades, we craft looks that define you.
+                </p>
+                <div class="hero-ctas">
+                    <a href="services.html" class="btn btn-primary btn-large">
+                        <span>Book Your Cut</span>
+                    </a>
+                    <a href="services.html" class="btn btn-secondary btn-large">
+                        <span>View Services</span>
+                    </a>
+                </div>
+
+                <div class="hero-logos">
+                    <div class="hero-logos-grid">
+                        <div class="hero-logo-item fade-in">
+                            <img src="../logo.png" alt="Golden Barbers Logo">
+                        </div>
+                        <div class="hero-logo-item fade-in">
+                            <img src="../logo-removebg-preview.png" alt="Golden Barbers Logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="section trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item fade-in">
+                    <span class="trust-number">15+</span>
+                    <span class="trust-label">Years Experience</span>
+                </div>
+                <div class="trust-item fade-in">
+                    <span class="trust-number">10K+</span>
+                    <span class="trust-label">Happy Clients</span>
+                </div>
+                <div class="trust-item fade-in">
+                    <span class="trust-number">4.9★</span>
+                    <span class="trust-label">Average Rating</span>
+                </div>
+                <div class="trust-item fade-in">
+                    <span class="trust-number">500+</span>
+                    <span class="trust-label">5-Star Reviews</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Services -->
+    <section class="section services-preview">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-eyebrow">Our Signature Services</div>
+                <h2 class="section-heading">Transform Your Look</h2>
+                <p class="section-description">
+                    Premium grooming services tailored to the modern gentleman.
+                    Every cut is a masterpiece.
+                </p>
+            </div>
+
+            <div class="services-preview-grid">
+                <div class="service-preview-card scale-in">
+                    <span class="service-preview-icon">✂️</span>
+                    <h3 class="service-preview-title">Premium Haircut</h3>
+                    <p class="service-preview-description">
+                        Precision cutting techniques combined with your unique style.
+                        Includes consultation, wash, cut, and finish.
+                    </p>
+                    <div>
+                        <div class="service-preview-price-label">From</div>
+                        <div class="service-preview-price">£30</div>
+                    </div>
+                </div>
+
+                <div class="service-preview-card scale-in">
+                    <span class="service-preview-icon">💈</span>
+                    <h3 class="service-preview-title">Signature Fade</h3>
+                    <p class="service-preview-description">
+                        Master-level fade work with surgical precision.
+                        Skin fades, drop fades, and everything in between.
+                    </p>
+                    <div>
+                        <div class="service-preview-price-label">From</div>
+                        <div class="service-preview-price">£35</div>
+                    </div>
+                </div>
+
+                <div class="service-preview-card scale-in">
+                    <span class="service-preview-icon">🪒</span>
+                    <h3 class="service-preview-title">Royal Shave</h3>
+                    <p class="service-preview-description">
+                        Traditional hot towel shave with premium products.
+                        The ultimate grooming experience.
+                    </p>
+                    <div>
+                        <div class="service-preview-price-label">From</div>
+                        <div class="service-preview-price">£35</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="services.html" class="btn btn-primary btn-large">
+                    <span>View All Services</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Golden Barbers -->
+    <section class="section why-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-eyebrow">Why Choose Us</div>
+                <h2 class="section-heading">Premium Grooming, <span class="text-gradient">Unmatched Excellence</span></h2>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card fade-in">
+                    <div class="why-icon">🎯</div>
+                    <h3 class="why-title">Precision Craftsmanship</h3>
+                    <p class="why-description">
+                        Every cut is executed with meticulous attention to detail.
+                        Our barbers are trained in both traditional and modern techniques.
+                    </p>
+                </div>
+
+                <div class="why-card fade-in">
+                    <div class="why-icon">⚡</div>
+                    <h3 class="why-title">Premium Products</h3>
+                    <p class="why-description">
+                        We use only the finest grooming products from leading brands.
+                        Your hair deserves the best.
+                    </p>
+                </div>
+
+                <div class="why-card fade-in">
+                    <div class="why-icon">🏆</div>
+                    <h3 class="why-title">Expert Barbers</h3>
+                    <p class="why-description">
+                        Our team brings decades of combined experience.
+                        Master barbers who live and breathe the craft.
+                    </p>
+                </div>
+
+                <div class="why-card fade-in">
+                    <div class="why-icon">⏱️</div>
+                    <h3 class="why-title">On-Time Service</h3>
+                    <p class="why-description">
+                        We respect your time. Book online and we'll be ready when you arrive.
+                        No endless waiting.
+                    </p>
+                </div>
+
+                <div class="why-card fade-in">
+                    <div class="why-icon">✨</div>
+                    <h3 class="why-title">Premium Atmosphere</h3>
+                    <p class="why-description">
+                        Modern, clean, and comfortable environment.
+                        More than a barbershop—it's an experience.
+                    </p>
+                </div>
+
+                <div class="why-card fade-in">
+                    <div class="why-icon">💎</div>
+                    <h3 class="why-title">Consistent Quality</h3>
+                    <p class="why-description">
+                        Every visit delivers the same exceptional standard.
+                        Reliability you can count on.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section reviews-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-eyebrow">Client Reviews</div>
+                <h2 class="section-heading">Trusted by <span class="text-gradient">Thousands</span></h2>
+                <p class="section-description">
+                    Don't just take our word for it. Here's what our clients say.
+                </p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card fade-in">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">
+                        "Best barber shop in Ilford hands down. The attention to detail is incredible.
+                        I always leave looking sharp and feeling confident."
+                    </p>
+                    <div class="review-author">
+                        <div class="review-author-avatar">MJ</div>
+                        <div>
+                            <div class="review-author-name">Marcus Johnson</div>
+                            <div class="review-author-verified">✓ Verified Client</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">
+                        "Been coming here for 3 years. Consistent quality every single time.
+                        The team knows exactly what I want before I even ask."
+                    </p>
+                    <div class="review-author">
+                        <div class="review-author-avatar">DP</div>
+                        <div>
+                            <div class="review-author-name">David Patel</div>
+                            <div class="review-author-verified">✓ Verified Client</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">
+                        "The fade work here is unmatched. Clean, precise, and always on point.
+                        Worth every penny for the level of skill."
+                    </p>
+                    <div class="review-author">
+                        <div class="review-author-avatar">AK</div>
+                        <div>
+                            <div class="review-author-name">Ahmed Khan</div>
+                            <div class="review-author-verified">✓ Verified Client</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <span class="cta-eyebrow">Book Today</span>
+                <h2 class="cta-title">Ready for Your <span class="text-gradient">Best Look Yet?</span></h2>
+                <p class="cta-description">
+                    Join thousands of satisfied clients. Book your appointment now and experience premium grooming.
+                </p>
+                <div class="cta-buttons">
+                    <a href="services.html" class="btn btn-primary btn-large">
+                        <span>Book Now</span>
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary btn-large">
+                        <span>Contact Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Golden Barbers Goodmayes</h4>
+                    <p>Premium barbershop in the heart of Ilford, London. Where precision meets style.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Hours</h4>
+                    <p>Monday - Saturday<br>9:30 AM - 8:00 PM</p>
+                    <p>Sunday<br>9:30 AM - 6:00 PM</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>14 Goodmayes Rd<br>London, Ilford IG3 9UN</p>
+                    <p>020 8598 9920</p>
+                    <p>ltdgoldenbarbers@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Golden Barbers Goodmayes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+
+</body>
+</html>
