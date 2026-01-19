@@ -454,18 +454,18 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1000px;
-    height: 1000px;
+    width: 1400px;
+    height: 1400px;
     background-image: url('../logo-removebg-preview.png');
     background-size: 75%;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.12;
+    opacity: 0.15;
     animation: logoFloat 8s ease-in-out infinite;
     pointer-events: none;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    filter: contrast(1.1) brightness(1.05);
+    filter: contrast(1.2) brightness(1.1) saturate(1.1);
     clip-path: circle(32% at 50% 50%);
 }
 
@@ -489,11 +489,11 @@ p {
 @keyframes logoFloat {
     0%, 100% {
         transform: translate(-50%, -50%) scale(1);
-        opacity: 0.12;
+        opacity: 0.15;
     }
     50% {
         transform: translate(-50%, -50%) scale(1.08);
-        opacity: 0.18;
+        opacity: 0.22;
     }
 }
 
@@ -779,8 +779,8 @@ p {
     }
 
     .hero-bg::before {
-        width: 750px;
-        height: 750px;
+        width: 1000px;
+        height: 1000px;
         clip-path: circle(32% at 50% 50%);
     }
 }
@@ -835,9 +835,9 @@ p {
     }
 
     .hero-bg::before {
-        width: 500px;
-        height: 500px;
-        opacity: 0.1;
+        width: 700px;
+        height: 700px;
+        opacity: 0.12;
         clip-path: circle(32% at 50% 50%);
     }
 
@@ -975,8 +975,8 @@ p {
     }
 
     .hero-bg::before {
-        width: 400px;
-        height: 400px;
+        width: 550px;
+        height: 550px;
         clip-path: circle(32% at 50% 50%);
     }
 
