@@ -217,8 +217,10 @@ class UpsellModal {
                     <div>
                         <h4>${addOn.name}</h4>
                         <p>${addOn.description}</p>
+                        ${addOn.discount ? `<span class="upsell-discount-badge">${addOn.discount}</span>` : ''}
                     </div>
                     <div class="upsell-item-price">
+                        ${addOn.originalPrice ? `<span class="upsell-original-price">${addOn.originalPrice}</span>` : ''}
                         <span class="upsell-price-label">+${addOn.price}</span>
                         <span class="upsell-duration">${addOn.duration}</span>
                     </div>
@@ -506,18 +508,18 @@ class BookingFlow {
     getAddOnsForService(serviceName) {
         const addOnsMap = {
             'Classic Haircut': [
-                { name: 'Beard Trim', price: '£10', duration: '+10 min', description: 'Clean up your beard line' },
-                { name: 'Hot Towel Finish', price: '£8', duration: '+5 min', description: 'Relaxing hot towel treatment' }
+                { name: 'Beard Trim', price: '£10', originalPrice: '£15', duration: '+10 min', description: 'Clean up your beard line', discount: 'Save £5' },
+                { name: 'Hot Towel Finish', price: '£8', originalPrice: '£12', duration: '+5 min', description: 'Relaxing hot towel treatment', discount: 'Save £4' }
             ],
             'Modern Fade': [
-                { name: 'Beard Trim & Shape', price: '£12', duration: '+15 min', description: 'Professional beard styling' },
-                { name: 'Eyebrow Trim', price: '£5', duration: '+5 min', description: 'Clean, defined brows' }
+                { name: 'Beard Trim & Shape', price: '£12', originalPrice: '£15', duration: '+15 min', description: 'Professional beard styling', discount: 'Save £3' },
+                { name: 'Eyebrow Trim', price: '£5', originalPrice: '£8', duration: '+5 min', description: 'Clean, defined brows', discount: 'Save £3' }
             ],
             'Beard Trim & Shape': [
-                { name: 'Haircut', price: '£25', duration: '+30 min', description: 'Complete the look with a fresh cut' }
+                { name: 'Haircut', price: '£25', originalPrice: '£30', duration: '+30 min', description: 'Complete the look with a fresh cut', discount: 'Save £5' }
             ],
             'Hot Towel Shave': [
-                { name: 'Beard Oil Treatment', price: '£8', duration: '+5 min', description: 'Nourishing beard care' }
+                { name: 'Beard Oil Treatment', price: '£8', originalPrice: '£12', duration: '+5 min', description: 'Nourishing beard care', discount: 'Save £4' }
             ],
             'Kids Cut': [],
             'Premium Package': []

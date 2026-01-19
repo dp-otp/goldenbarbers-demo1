@@ -208,11 +208,34 @@
 .upsell-item p {
     font-size: 0.875rem;
     color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.upsell-discount-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .upsell-item-price {
     text-align: right;
     white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.upsell-original-price {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-bottom: 0.25rem;
 }
 
 .upsell-price-label {
